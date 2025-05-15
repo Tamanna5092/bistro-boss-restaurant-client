@@ -1,4 +1,5 @@
 import React from "react";
+import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -48,8 +49,9 @@ const Navbar = () => {
            {navOptions}
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className="flex items-center gap-2 navbar-end">
+        <a className="text-white text-lg bg-green-600 p-1 rounded-3xl"><TiShoppingCart></TiShoppingCart></a>
+        <a className="btn">Sign In</a>
       </div>
     </div>
   );

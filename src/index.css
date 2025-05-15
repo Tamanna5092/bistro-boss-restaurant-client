@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.thumbs-wrapper .thumbs{
+    display: flex;
+    justify-content: center;
+}
