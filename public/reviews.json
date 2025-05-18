@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "643010e0f5a7e52ce1e8fa66",
+    "name": "Michael Smith",
+    "details": "The food was absolutely delicious and the ambiance made the evening even more enjoyable. The steak was cooked to perfection, and the wine selection complemented the meal wonderfully. Will definitely be back!",
+    "rating": 4
+  },
+  {
+    "_id": "643010e0f5a7e52ce1e8fa67",
+    "name": "Emily Johnson",
+    "details": "Service was a bit slow during our visit, but the staff was friendly and the meals were worth the wait. The pasta had a great texture and the seasoning was spot-on. A good spot for a relaxed dinner.",
+    "rating": 4
+  },
+  {
+    "_id": "643010e0f5a7e52ce1e8fa69",
+    "name": "Linda Davis",
+    "details": "Great place for a family dinner. The menu has something for everyone and the portions are generous. The kids loved the mac and cheese, and the grilled chicken was juicy and flavorful.",
+    "rating": 4.5
+  },
+  {
+    "_id": "643010e0f5a7e52ce1e8fa70",
+    "name": "Kevin Wilson",
+    "details": "I loved the interior design and the staff was very welcoming. The dessert was the highlight of the night—especially the chocolate lava cake which was rich and decadent. Would highly recommend to dessert lovers!",
+    "rating": 4
+  },
+  {
+    "_id": "6430113af5a7e52ce1e8fa69",
+    "name": "Robert Johnson",
+    "details": "This is by far the best service I have ever used. The customer support is outstanding, and the product itself is top-notch. I couldn't be happier!",
+    "rating": 5
+  }
+]

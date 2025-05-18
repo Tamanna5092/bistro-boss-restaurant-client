@@ -13,9 +13,9 @@ const Featured = () => {
                 heading={"From Our Menu"}>
             </SectionTitle>
             <div className='md:flex justify-center items-center px-10 space-y-6 md:space-y-0 pb-20 pt-12 md:px-36 gap-6'>
-                <divv className='md:w-1/2'>
+                <div className='md:w-1/2'>
                     <img src={featuredImage} alt="Featured" className="w-full object-cover" />
-                </divv>
+                </div>
                 <div className='md:w-1/2'>
                     <p>March 20, 2025</p>
                     <p className='uppercase'>Where can i get some?</p>
