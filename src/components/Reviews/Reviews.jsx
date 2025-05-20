@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import SectionTitle from "../SectionTitle/SectionTitle";
+import SectionTitle from "../../Pages/Shared/SectionTitle/SectionTitle";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";

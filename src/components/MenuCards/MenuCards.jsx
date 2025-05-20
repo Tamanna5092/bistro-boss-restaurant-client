@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SectionTitle from "../SectionTitle/SectionTitle";
+import SectionTitle from "../../Pages/Shared/SectionTitle/SectionTitle";
 import { data } from "react-router-dom";
 
 const MenuCards = () => {

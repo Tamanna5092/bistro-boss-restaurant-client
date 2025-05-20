@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionTitle from '../SectionTitle/SectionTitle';
+import SectionTitle from '../../Pages/Shared/SectionTitle/SectionTitle';
 import featuredImage from '../../assets/home/featured.jpg';
 import './Featured.css';
 
