@@ -12,9 +12,11 @@ const Reviews = () => {
 
   useEffect(() => {
     fetch("reviews.json").then((res) =>
-      res.json().then((data) => setReviews(data))
+      res.json().then((data) => {
+        setReviews(data);
+        // console.log(data);
+      })
     );
-    // console.log(reviews);
   }, []);
 
   return (

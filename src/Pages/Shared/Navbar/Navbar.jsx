@@ -7,13 +7,13 @@ const Navbar = () => {
     <>
       <li className="uppercase font-medium"><Link to={"/"}>Home</Link></li>
       <li className="uppercase font-medium"><Link to={""}>Dashboard</Link></li>
-      <li className="uppercase font-medium"><Link to={""}>Our menu</Link></li>
+      <li className="uppercase font-medium"><Link to={"/ourMenu"}>Our menu</Link></li>
       <li className="uppercase font-medium"><Link to={""}>Our shop</Link></li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 p-0 md:px-6">
+    <div className="navbar bg-opacity-30 bg-black absolute text-white z-10 p-0 md:px-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

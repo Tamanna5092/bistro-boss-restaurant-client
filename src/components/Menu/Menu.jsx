@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import { Link } from "react-router-dom";
+import { key } from "localforage";
 
 const Menu = () => {
   const [menus, setMenus] = useState([]);
@@ -9,8 +10,10 @@ const Menu = () => {
   useEffect(() => {
     fetch("menu.json")
       .then((res) => res.json())
-      .then((data) => setMenus(data));
-    console.log(menus);
+      .then((data) => {
+        setMenus(data);
+        console.log(data);
+      });
   }, []);
 
   return (
@@ -21,7 +24,7 @@ const Menu = () => {
       ></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {menus.slice(0, dataLength).map((menu) => (
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center px-4 md:px-0">
+          <div key={menu._id} className="flex flex-col md:flex-row gap-6 justify-center items-center px-4 md:px-0">
             <div className="md:w-1/4">
               <img
                 className="w-full h-full rounded-[0%_57%_49%_50%_/_0%_52%_48%_76%]"

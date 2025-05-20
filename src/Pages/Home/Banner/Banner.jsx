@@ -9,7 +9,8 @@ import img6 from '../../../assets/home/06.png';
 
 const Banner = () => {
     return (
-            <Carousel 
+            <div className="relative">
+                <Carousel 
             infiniteLoop={true}
             className="thumbs-wrapper"
             >
@@ -32,6 +33,7 @@ const Banner = () => {
                     <img src={img6} />
                 </div>
             </Carousel>
+            </div>
     );
 };
 

@@ -1,0 +1,81 @@
+[
+  {
+    "_id": "001",
+    "category": "Salad",
+    "name": "Mediterranean Quinoa Salad",
+    "image": "https://i.ibb.co/PrPMgTF/download.jpg",
+    "recipe": "A fresh, protein-packed quinoa salad made with fluffy quinoa, juicy cherry tomatoes, crisp cucumbers, tangy red onions, and crumbled feta cheese. Everything is tossed in a zesty homemade lemon-oregano dressing, making it perfect as a light lunch or a healthy side dish.",
+    "ingredients": [
+      "Quinoa",
+      "Cherry tomatoes",
+      "Cucumber",
+      "Red onion",
+      "Feta cheese",
+      "Olive oil",
+      "Lemon juice",
+      "Oregano"
+    ]
+  },
+  {
+    "_id": "002",
+    "category": "Pizza",
+    "name": "Margherita Pizza",
+    "image": "https://ibb.co/wsjfV9h",
+    "recipe": "This authentic Margherita pizza features a crispy thin crust, topped with a rich tomato sauce, slices of fresh mozzarella, and whole basil leaves. Baked in a high-temperature oven, it's finished with a drizzle of extra virgin olive oil for a simple yet flavorful Italian classic.",
+    "ingredients": [
+      "Pizza dough",
+      "Tomato sauce",
+      "Fresh mozzarella",
+      "Fresh basil leaves",
+      "Olive oil",
+      "Salt"
+    ]
+  },
+  {
+    "_id": "003",
+    "category": "Soups",
+    "name": "Creamy Tomato Basil Soup",
+    "image": "https://via.placeholder.com/300x200?text=Soup",
+    "recipe": "A rich and comforting tomato soup made by simmering ripe tomatoes, onions, and garlic until tender, then blending to a smooth texture with a touch of cream. Garnished with fresh basil and a hint of black pepper, it’s a cozy favorite perfect for any season.",
+    "ingredients": [
+      "Ripe tomatoes",
+      "Onions",
+      "Garlic",
+      "Vegetable broth",
+      "Heavy cream",
+      "Fresh basil",
+      "Salt",
+      "Pepper"
+    ]
+  },
+  {
+    "_id": "004",
+    "category": "Desserts",
+    "name": "Chocolate Lava Cake",
+    "image": "https://via.placeholder.com/300x200?text=Dessert",
+    "recipe": "An indulgent dessert featuring a soft chocolate cake with a decadent molten center. Served warm, the rich chocolate oozes out with every bite. Best enjoyed with a scoop of vanilla ice cream and a sprinkle of powdered sugar on top.",
+    "ingredients": [
+      "Dark chocolate",
+      "Butter",
+      "Eggs",
+      "Sugar",
+      "Flour",
+      "Vanilla extract"
+    ]
+  },
+  {
+    "_id": "005",
+    "category": "Drinks",
+    "name": "Cucumber Mint Lemonade",
+    "image": "https://via.placeholder.com/300x200?text=Drink",
+    "recipe": "A cool and hydrating drink made by blending fresh cucumber with lemon juice and mint leaves. Sweetened with honey and served over ice, it’s an ideal choice for beating the heat and staying refreshed all day long.",
+    "ingredients": [
+      "Cucumber",
+      "Lemon juice",
+      "Fresh mint",
+      "Honey",
+      "Water",
+      "Ice cubes"
+    ]
+  }
+]
