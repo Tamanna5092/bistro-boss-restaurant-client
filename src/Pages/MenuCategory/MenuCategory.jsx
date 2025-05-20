@@ -18,6 +18,11 @@ const MenuCategory = ({ items, title, subTitle, img }) => {
           <MenuItem item={item} key={item._id}></MenuItem>
         ))}
       </div>
+      <div className="text-center mt-10">
+        <button className="py-3 px-6 font-semibold uppercase rounded-md bg-[#fffdfd] hover:bg-[#1F2937] text-black hover:text-[#BB8506] hover:border-none border-b-4 border-black">
+          Order Your Favourite Food
+        </button>
+      </div>
       </div>
     </div>
   );
