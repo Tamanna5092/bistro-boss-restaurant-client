@@ -5,30 +5,30 @@ import ChefService from "../../components/ChefService/ChefService";
 import Featured from "../../components/Featured/Featured";
 import Menu from "../../components/Menu/Menu";
 import CallUs from "../../components/CallUs/CallUs";
-import MenuCards from "../../components/MenuCards/MenuCards";
+import Foods from "../../components/FoodCard/Foods";
 import Reviews from "../../components/Reviews/Reviews";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
 const Home = () => {
-const location = useLocation()
+  const location = useLocation();
 
-useEffect(() => {
-  document.title = "Bistro Boss | Home";
-}, [location.pathname])
+  useEffect(() => {
+    document.title = "Bistro Boss | Home";
+  }, [location.pathname]);
 
   return (
     <div>
       <Helmet>
         <title>Bistro Boss | Home</title>
       </Helmet>
-        <Banner></Banner>
+      <Banner></Banner>
       <div className="max-w-screen-xl mx-auto">
         <Category></Category>
         <ChefService></ChefService>
         <Menu></Menu>
         <CallUs></CallUs>
-        <MenuCards></MenuCards>
+        <Foods></Foods>
       </div>
       <Featured></Featured>
       <div className="max-w-screen-xl mx-auto">
