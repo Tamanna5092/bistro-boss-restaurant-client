@@ -9,7 +9,7 @@ const Navbar = () => {
       <li className="uppercase font-medium"><Link to={""}>Dashboard</Link></li>
       <li className="uppercase font-medium"><Link to={"/ourMenu"}>Our menu</Link></li>
       <li className="uppercase font-medium"><Link to={""}>Our shop</Link></li>
-      <li className="uppercase font-medium"><Link to={"/order"}>Order Food</Link></li>
+      <li className="uppercase font-medium"><Link to={"/order/salad"}>Order Food</Link></li>
     </>
   );
 
@@ -52,7 +52,8 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-2 navbar-end">
         <a className="text-white text-lg bg-green-600 p-1 rounded-3xl"><TiShoppingCart></TiShoppingCart></a>
-        <a className="btn">Sign In</a>
+        <a className="uppercase font-medium"><Link to={"/signIn"}>Sign In</Link></a>
+      <a className="uppercase font-medium"><Link to={"/signUp"}>Sign Up</Link></a>
       </div>
     </div>
   );

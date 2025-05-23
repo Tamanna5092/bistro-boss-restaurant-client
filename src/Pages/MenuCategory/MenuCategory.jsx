@@ -1,6 +1,7 @@
 import React from "react";
 import MenuItem from "../../components/Menu/MenuItem";
 import Cover from "../Shared/Cover/Cover";
+import { Link } from "react-router-dom";
 
 const MenuCategory = ({ items, title, subTitle, img }) => {
   return (
@@ -19,9 +20,9 @@ const MenuCategory = ({ items, title, subTitle, img }) => {
         ))}
       </div>
       <div className="text-center mt-10">
-        <button className="py-3 px-6 font-semibold uppercase rounded-md bg-[#fffdfd] hover:bg-[#1F2937] text-black hover:text-[#BB8506] hover:border-none border-b-4 border-black">
+        <Link to={`/order/${title?.toLowerCase()}`} className="py-3 px-6 font-semibold uppercase rounded-md bg-[#fffdfd] hover:bg-[#1F2937] text-black hover:text-[#BB8506] hover:border-none border-b-4 border-black">
           Order Your Favourite Food
-        </button>
+        </Link>
       </div>
       </div>
     </div>

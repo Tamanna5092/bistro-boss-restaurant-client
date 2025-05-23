@@ -21,7 +21,7 @@ const OurMenu = () => {
   const salad = menu.filter((item) => item.category === "salad");
 
   useEffect(() => {
-    document.title = "Bistro Boss | Our Menu";
+    document.title = "Bistro Boss | Menu";
   }, [location.pathname]);
 
   return (
