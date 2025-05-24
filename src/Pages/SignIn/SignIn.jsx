@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import ReCAPTCHA from "react-google-recaptcha";
 import login from "../../assets/others/authentication2.png";
 import bgImg from "../../assets/others/authentication.png";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 const SignIn = () => {
 	const [captcha, setCaptcha] = useState(null);
 	const [disabled, setDisabled] = useState(true); 
+
+	const {signIn} = useContext(AuthContext)
  
 
 	const handleCaptcha = (value) => {
@@ -24,6 +27,12 @@ const SignIn = () => {
 		if (!captcha){
 			alert("Captcha verification failed");
 		}
+
+		signIn(email, password)
+		.then(result => {
+			const user = result.user;
+			console.log(user)
+		})
 	}
 
 

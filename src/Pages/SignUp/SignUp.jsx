@@ -1,8 +1,13 @@
 import signUp from "../../assets/others/authentication2.png";
 import bgImg from "../../assets/others/authentication.png";
 import { Link } from "react-router-dom";
+import { createContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const SignUp = () => {
+    const {createUser} = createContext(AuthContext)
+
+
   const handleSignUP = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,6 +16,8 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(username, photo, email, password);
+    
+    // createUser(username,)
   };
 
   return (

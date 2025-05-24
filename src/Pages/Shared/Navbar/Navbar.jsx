@@ -10,6 +10,7 @@ const Navbar = () => {
       <li className="uppercase font-medium"><Link to={"/ourMenu"}>Our menu</Link></li>
       <li className="uppercase font-medium"><Link to={""}>Our shop</Link></li>
       <li className="uppercase font-medium"><Link to={"/order/salad"}>Order Food</Link></li>
+      <li className="uppercase font-medium"><Link to={"/contact"}>Contact</Link></li>
     </>
   );
 

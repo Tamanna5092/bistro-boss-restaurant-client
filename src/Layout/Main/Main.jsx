@@ -10,7 +10,7 @@ const Main = () => {
         <div>
             { noNavbarFooter || <Navbar></Navbar>}
             <Outlet></Outlet>
-            {!noNavbarFooter || <Footer></Footer>}
+            { noNavbarFooter || <Footer></Footer>}
         </div>
     );
 };
