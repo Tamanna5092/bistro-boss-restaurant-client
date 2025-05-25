@@ -2,19 +2,56 @@ import React, { useContext } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user , logOut } = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
   const navOptions = (
     <>
-      <li className="uppercase font-medium"><Link to={"/"}>Home</Link></li>
-      <li className="uppercase font-medium"><Link to={""}>Dashboard</Link></li>
-      <li className="uppercase font-medium"><Link to={"/ourMenu"}>Our menu</Link></li>
-      <li className="uppercase font-medium"><Link to={""}>Our shop</Link></li>
-      <li className="uppercase font-medium"><Link to={"/order/salad"}>Order Food</Link></li>
-      <li className="uppercase font-medium"><Link to={"/contact"}>Contact</Link></li>
+      <li className="uppercase font-medium">
+        <Link to={"/"}>Home</Link>
+      </li>
+      <li className="uppercase font-medium">
+        <Link to={""}>Dashboard</Link>
+      </li>
+      <li className="uppercase font-medium">
+        <Link to={"/ourMenu"}>Our menu</Link>
+      </li>
+      <li className="uppercase font-medium">
+        <Link to={""}>Our shop</Link>
+      </li>
+      <li className="uppercase font-medium">
+        <Link to={"/order/salad"}>Order Food</Link>
+      </li>
+      <li className="uppercase font-medium">
+        <Link to={"/contact"}>Contact</Link>
+      </li>
     </>
   );
+
+  const handleLogOut = () => {   
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, LogOut!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            logOut()
+            Swal.fire({
+              title: "Logged out!",
+              text: "Logged out successfully.",
+              icon: "success",
+            });
+          }
+      })
+      .catch((error) => {
+        console.error("Logout failed:", error.message);
+      });
+  };
 
   return (
     <div className="navbar bg-opacity-30 bg-black absolute top-0 text-white z-10 p-0 md:px-6">
@@ -44,21 +81,30 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex flex-col">
-          <a className="text-base font-bold uppercase md:text-xl">Bistro boss</a>
-        <span className="font-medium tracking-[0.02rem] uppercase md:tracking-[0.2rem]">Restaurant</span>
+          <a className="text-base font-bold uppercase md:text-xl">
+            Bistro boss
+          </a>
+          <span className="font-medium tracking-[0.02rem] uppercase md:tracking-[0.2rem]">
+            Restaurant
+          </span>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-           {navOptions}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="flex items-center gap-2 navbar-end">
-        <a className="text-white text-lg bg-green-600 p-1 rounded-3xl"><TiShoppingCart></TiShoppingCart></a>
-        {
-          user? <button onClick={logOut} className="uppercase font-medium">Sign Out</button> :
-      <a className="uppercase font-medium"><Link to={"/signIn"}>Sign In</Link></a>
-        }
+        <a className="text-white text-lg bg-green-600 p-1 rounded-3xl">
+          <TiShoppingCart></TiShoppingCart>
+        </a>
+        {user ? (
+          <button onClick={handleLogOut} className="uppercase font-medium">
+            Sign Out
+          </button>
+        ) : (
+          <a className="uppercase font-medium">
+            <Link to={"/signIn"}>Sign In</Link>
+          </a>
+        )}
       </div>
     </div>
   );

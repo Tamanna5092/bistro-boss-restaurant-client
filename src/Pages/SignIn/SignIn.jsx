@@ -6,6 +6,7 @@ import bgImg from "../../assets/others/authentication.png";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 const SignIn = () => {
   const location = useLocation();
   const [captcha, setCaptcha] = useState(null);
@@ -21,18 +22,32 @@ const SignIn = () => {
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
-    const username = form.username.value;
+    const email = form.email.value;
     const password = form.password.value;
-    console.log(username, password, captcha);
+    console.log(email, password);
 
     if (!captcha) {
-      alert("Captcha verification failed");
+      return alert("Captcha verification failed");
     }
 
-    signIn(email, password).then((result) => {
-      const user = result.user;
-      console.log(user);
-    });
+    signIn(email, password)
+      .then((result) => {
+        const signInUser = result.user;
+        Swal.fire({
+          title: "Sign In!",
+          text: "Sign in successfully!",
+          icon: "success",
+        });
+        console.log(signInUser);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to sign in. Please check email and password.",
+        });
+      });
+    form.reset();
   };
 
   useEffect(() => {
@@ -59,17 +74,14 @@ const SignIn = () => {
               <h1 className="text-2xl font-bold text-center">Login</h1>
               <form onSubmit={handleSignIn} className="space-y-6">
                 <div className="space-y-1 text-sm">
-                  <label
-                    htmlFor="username"
-                    className="block dark:text-gray-600"
-                  >
-                    Username
+                  <label htmlFor="email" className="block dark:text-gray-600">
+                    Email
                   </label>
                   <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="Username"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
                     className="w-full px-4 py-3 rounded-md bg-white dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
                   />
                 </div>

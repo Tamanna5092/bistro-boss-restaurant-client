@@ -5,9 +5,10 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const location = useLocation()
+  const location = useLocation();
   const { createUser } = useContext(AuthContext);
   const {
     register,
@@ -18,17 +19,33 @@ const SignUp = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email, data.password)
-    .then(result => {
-      const singUpUser = result.user
-      console.log(singUpUser) 
-    })
+    createUser(data.email, data.password).then((result) => {
+      const singUpUser = result.user;
+      Swal.fire({
+        title: "Sign up successfully!",
+        showClass: {
+          popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `,
+        },
+        hideClass: {
+          popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `,
+        },
+      });
+      console.log(singUpUser);
+    });
     reset();
   };
 
   useEffect(() => {
-      document.title = "Bistro Boss | Sign UP";
-    }, [location.pathname]);
+    document.title = "Bistro Boss | Sign UP";
+  }, [location.pathname]);
 
   return (
     <div>

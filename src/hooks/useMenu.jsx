@@ -9,7 +9,6 @@ const useMenu = () => {
           .then((res) => res.json())
           .then((data) => {
             setMenu(data);
-            console.log(data);
           });
       }, [menu]);
       return [menu];
