@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user , logOut } = useContext(AuthContext)
   const navOptions = (
     <>
       <li className="uppercase font-medium"><Link to={"/"}>Home</Link></li>
@@ -53,8 +55,10 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-2 navbar-end">
         <a className="text-white text-lg bg-green-600 p-1 rounded-3xl"><TiShoppingCart></TiShoppingCart></a>
-        <a className="uppercase font-medium"><Link to={"/signIn"}>Sign In</Link></a>
-      <a className="uppercase font-medium"><Link to={"/signUp"}>Sign Up</Link></a>
+        {
+          user? <button onClick={logOut} className="uppercase font-medium">Sign Out</button> :
+      <a className="uppercase font-medium"><Link to={"/signIn"}>Sign In</Link></a>
+        }
       </div>
     </div>
   );

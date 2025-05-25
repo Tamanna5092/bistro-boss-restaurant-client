@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cover from "../Shared/Cover/Cover";
 import contact from "../../assets/contact/banner.jpg";
 import SectionTitle from "../Shared/SectionTitle/SectionTitle";
@@ -6,8 +6,11 @@ import { BiLogoTelegram, BiSolidPhoneCall } from "react-icons/bi";
 import { IoLocationSharp } from "react-icons/io5";
 import { HiClock } from "react-icons/hi";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Helmet } from "react-helmet-async";
+import { useLocation } from "react-router-dom";
 
 const Contact = () => {
+  const location = useLocation()
   const [captcha, setCaptcha] = useState(null);
   const [disabled, setDisabled] = useState(true);
 
@@ -26,8 +29,15 @@ const Contact = () => {
     console.log({ name, phone, email, message });
   };
 
+  useEffect(() => {
+    document.title = "Bistro Boss | Contact";
+  }, [location.pathname]);
+
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | Contact</title>
+      </Helmet>
       <Cover
         img={contact}
         title={"Contact Us"}
