@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import ReCAPTCHA from "react-google-recaptcha";
 import login from "../../assets/others/authentication2.png";
 import bgImg from "../../assets/others/authentication.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+
+
 const SignIn = () => {
-  const location = useLocation();
   const [captcha, setCaptcha] = useState(null);
   const [disabled, setDisabled] = useState(true);
+  const navigate = useNavigate()
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const { signIn } = useContext(AuthContext);
 
@@ -38,6 +41,7 @@ const SignIn = () => {
           text: "Sign in successfully!",
           icon: "success",
         });
+        navigate(from, {replace: true});
         console.log(signInUser);
       })
       .catch((error) => {
