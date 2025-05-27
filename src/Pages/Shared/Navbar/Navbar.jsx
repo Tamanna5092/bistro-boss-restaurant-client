@@ -97,9 +97,14 @@ const Navbar = () => {
           <TiShoppingCart></TiShoppingCart>
         </a>
         {user ? (
+          <div className="flex items-center gap-2">
+            <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+            <img className="w-10 h-10 rounded-full" src={user?.photoURL} alt="" />
+          </div>
           <button onClick={handleLogOut} className="uppercase font-medium">
             Sign Out
           </button>
+          </div>
         ) : (
           <a className="uppercase font-medium">
             <Link to={"/signIn"}>Sign In</Link>

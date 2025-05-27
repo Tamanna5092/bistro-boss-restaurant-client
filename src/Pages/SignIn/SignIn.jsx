@@ -42,7 +42,7 @@ const SignIn = () => {
           icon: "success",
         });
         navigate(from, {replace: true});
-        console.log(signInUser);
+        form.reset();
       })
       .catch((error) => {
         Swal.fire({
@@ -51,7 +51,7 @@ const SignIn = () => {
           text: "Failed to sign in. Please check email and password.",
         });
       });
-    form.reset();
+
   };
 
   useEffect(() => {

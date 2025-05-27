@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -23,32 +23,30 @@ const SignUp = () => {
     console.log(data);
     createUser(data.email, data.password).then((result) => {
       const singUpUser = result.user;
-      Swal.fire({
-        title: "Sign up successfully!",
+      updateUserProfile(data.username, data.photo)
+      .then(() => {
+         Swal.fire({
+        title: "User created successfully!",
         showClass: {
-          popup: `
-      animate__animated
-      animate__fadeOutDown
-      animate__faster
-    `,
+          popup: `animate__animated animate__fadeOutDown animate__faster`,
         },
         hideClass: {
-          popup: `
-      animate__animated
-      animate__fadeInUp
-      animate__faster
-    `,
+          popup: `animate__animated animate__fadeInUp animate__faster`,
         },
       });
       navigate(from, { replace: true });
-      console.log(singUpUser);
+      reset();
+      })
+      .catch((error) => {
+        console.error("error updating user profile", error)
+      })
     });
-    reset();
   };
 
   useEffect(() => {
     document.title = "Bistro Boss | Sign UP";
   }, [location.pathname]);
+
 
   return (
     <div>
