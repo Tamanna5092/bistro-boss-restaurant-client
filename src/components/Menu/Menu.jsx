@@ -6,16 +6,17 @@ import MenuItem from "./MenuItem";
 
 const Menu = () => {
   const [menu] = useMenu()
+  const popular = menu.filter(item => item.category === 'popular')
   const [dataLength, setDataLength] = useState(6);
 
   return (
     <div>
       <SectionTitle
-        subHeading={"Check it out"}
+        subHeading={"Popular Items"}
         heading={"From Our Menu"}
       ></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {menu.slice(0, dataLength).map((item) => (
+        {popular.slice(0, dataLength).map((item) => (
           <MenuItem item={item} key={item._id}></MenuItem>
         ))}
       </div>
