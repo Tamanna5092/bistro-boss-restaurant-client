@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
-import { TiShoppingCart } from "react-icons/ti";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../../providers/AuthProvider";
+ import { TiShoppingCart } from "react-icons/ti";
+import { Link } from "react-router-dom"; 
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth()
   const navOptions = (
     <>
       <li className="uppercase font-medium">
@@ -92,10 +91,13 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
-      <div className="flex items-center gap-2 navbar-end">
-        <a className="text-white text-lg bg-green-600 p-1 rounded-3xl">
-          <TiShoppingCart></TiShoppingCart>
-        </a>
+      <div className="flex items-center gap-2 mr-2 md:mr-0 navbar-end">
+        <div className="relative mr-2">
+          <button className="text-white text-lg bg-green-600 p-1 rounded-3xl">
+          <TiShoppingCart className="w-6 h-6"></TiShoppingCart>
+        </button>
+        <p className="absolute -bottom-2 -right-2 bg-red-600 text-black rounded-full px-1">68</p>
+        </div>
         {user ? (
           <div className="flex items-center gap-2">
             <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>

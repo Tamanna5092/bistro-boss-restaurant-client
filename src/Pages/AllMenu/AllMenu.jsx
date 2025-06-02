@@ -7,12 +7,12 @@ const AllMenu = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/menu?page=${currentPage}&size=${itemPerPage}`)
+    fetch(`https://bistro-boss-server-flame-two.vercel.app/all-menu?page=${currentPage}&size=${itemPerPage}`)
     .then(res => res.json())
     .then(data => {
       setMenu(data)
     })
-  fetch(`http://localhost:5000/menuCount`)
+  fetch(`https://bistro-boss-server-flame-two.vercel.app/menuCount`)
       .then(res => res.json())
       .then(data => setCount(data.count));
   }, [currentPage, itemPerPage]);

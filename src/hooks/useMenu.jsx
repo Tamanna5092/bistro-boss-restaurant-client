@@ -5,12 +5,13 @@ const useMenu = () => {
       const [menu, setMenu] = useState([]);
     
       useEffect(() => {
-        fetch("http://localhost:5000/menu")
+        fetch("https://bistro-boss-server-flame-two.vercel.app/menu")
           .then((res) => res.json())
           .then((data) => {
+            console.log("Total items:", data.length);
             setMenu(data);
           });
-      }, [menu]);
+      }, []);
       return [menu];
 };
 
