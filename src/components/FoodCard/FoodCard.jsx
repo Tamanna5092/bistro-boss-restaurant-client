@@ -2,7 +2,8 @@ import React from "react";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { axiousSecure } from "../../hooks/useAxiosSecure";
+import useAxiosSecure, { axiousSecure } from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
 
 
 const FoodCard = ({ item }) => {
@@ -10,9 +11,11 @@ const FoodCard = ({ item }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiousSecure = useAxiosSecure()
+  const [, refetch] = useCart()
 
-  const handleAddToCart = (food) => {
-    console.log("Adding to cart:", food);
+  const handleAddToCart = () => {
+    console.log("Adding to cart");
     if (user && user.email) {
       const cartItem = {
         menuId: _id,
@@ -32,6 +35,7 @@ const FoodCard = ({ item }) => {
             timer: 1500,
             icon: "success",
           });
+          refetch()
         }
       });
     } else {
@@ -69,7 +73,7 @@ const FoodCard = ({ item }) => {
         </div>
         <button
           type="button"
-          onClick={() => handleAddToCart(item)}
+          onClick={handleAddToCart}
           className="flex items-center justify-center w-full p-3 font-semibold tracking-wide uppercase rounded-md bg-[#E8E8E8] hover:bg-[#1F2937] hover:text-[#BB8506] hover:border-none border-b-4 border-[#BB8506] dark:bg-violet-600 dark:text-gray-50"
         >
           Add To Cart

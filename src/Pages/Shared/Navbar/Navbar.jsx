@@ -2,9 +2,11 @@
 import { Link } from "react-router-dom"; 
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
+  const [cart] = useCart()
   const navOptions = (
     <>
       <li className="uppercase font-medium">
@@ -44,6 +46,8 @@ const Navbar = () => {
               title: "Logged out!",
               text: "Logged out successfully.",
               icon: "success",
+              showConfirmButton: false,
+              timer: 1000,
             });
           }
       })
@@ -92,12 +96,12 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="flex items-center gap-2 mr-2 md:mr-0 navbar-end">
-        <div className="relative mr-2">
+        <Link to={'/dashboard/cart'} className="relative mr-2">
           <button className="text-white text-lg bg-green-600 p-1 rounded-3xl">
           <TiShoppingCart className="w-6 h-6"></TiShoppingCart>
         </button>
-        <p className="absolute -bottom-2 -right-2 bg-red-600 text-black rounded-full px-1">68</p>
-        </div>
+        <p className="absolute -bottom-2 -right-2 bg-red-600 text-black rounded-full px-1">{cart.length}</p>
+        </Link>
         {user ? (
           <div className="flex items-center gap-2">
             <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
