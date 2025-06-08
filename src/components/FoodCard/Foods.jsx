@@ -5,7 +5,7 @@ import useMenu from "../../hooks/useMenu";
 
 const Foods = () => {
   const [menu] = useMenu()
-  console.log(menu);
+  // console.log(menu);
   const [dataLength, setDataLength] = useState(9);
 
   return (

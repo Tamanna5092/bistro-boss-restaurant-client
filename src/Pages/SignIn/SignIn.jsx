@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import login from "../../assets/others/authentication2.png";
 import bgImg from "../../assets/others/authentication.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import useAxiouPublic from "../../hooks/useAxiouPublic";
 
 
 const SignIn = () => {
@@ -14,8 +15,9 @@ const SignIn = () => {
   const navigate = useNavigate()
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  const { signIn } = useContext(AuthContext);
+  
+  const { signIn, googleSignIn } = useAuth();
+  const axiosPublic = useAxiouPublic()
 
   const handleCaptcha = (value) => {
     setCaptcha(value);
@@ -53,6 +55,30 @@ const SignIn = () => {
       });
 
   };
+
+   const handleGoogleSignIn = () => {
+    googleSignIn()
+    .then(result => {
+      console.log("Google sign in successful", result.user);
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+      }
+      axiosPublic.post('/users', userInfo)
+      .then(result => {
+        console.log("User info saved successfully", result.data);
+        Swal.fire({
+          title: "Sign In!",
+          text: "Sign in successfully!",
+          icon: "success",
+        });
+        navigate(from, {replace: true});
+      })
+      .catch(error => {
+        console.error("Error saving user info", error);
+      });
+    })
+  }
 
   useEffect(() => {
     document.title = "Bistro Boss | Sign In";
@@ -152,6 +178,7 @@ const SignIn = () => {
               </div>
               <div className="flex justify-center space-x-4">
                 <button
+                onClick={handleGoogleSignIn}
                   aria-label="Log in with Google"
                   className="p-3 rounded-full border border-black hover:border-none hover:bg-[#D1A054] hover:text-white"
                 >

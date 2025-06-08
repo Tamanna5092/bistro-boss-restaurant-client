@@ -1,17 +1,20 @@
 import signUp from "../../assets/others/authentication2.png";
 import bgImg from "../../assets/others/authentication.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import useAxiouPublic from "../../hooks/useAxiouPublic";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const axiosPublic = useAxiouPublic();
+  const { createUser, updateUserProfile, googleSignIn } = useAuth();
+  const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -24,29 +27,58 @@ const SignUp = () => {
     createUser(data.email, data.password).then((result) => {
       const singUpUser = result.user;
       updateUserProfile(data.username, data.photo)
-      .then(() => {
-         Swal.fire({
-        title: "User created successfully!",
-        showClass: {
-          popup: `animate__animated animate__fadeOutDown animate__faster`,
-        },
-        hideClass: {
-          popup: `animate__animated animate__fadeInUp animate__faster`,
-        },
-      });
-      navigate(from, { replace: true });
-      reset();
-      })
-      .catch((error) => {
-        console.error("error updating user profile", error)
-      })
+        .then(() => {
+          const userInfo = {
+            name: data.username,
+            email: data.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              console.log("user created successfully", res.data);
+              Swal.fire({
+                title: "User created successfully!",
+                text: "Please login to continue.",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+            }
+          });
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          console.error("error updating user profile", error);
+        });
+    });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
+      console.log("Google sign in successful", result.user);
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+      };
+      axiosPublic.post("/users", userInfo)
+        .then((result) => {
+          console.log("User info saved successfully", result.data);
+          Swal.fire({
+            title: "Sign In!",
+            text: "Sign in successfully!",
+            icon: "success",
+          });
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          console.error("Error saving user info", error);
+        });
     });
   };
 
   useEffect(() => {
     document.title = "Bistro Boss | Sign UP";
   }, [location.pathname]);
-
 
   return (
     <div>
@@ -182,6 +214,7 @@ const SignUp = () => {
               </div>
               <div className="flex justify-center space-x-4">
                 <button
+                  onClick={handleGoogleSignIn}
                   aria-label="Log in with Google"
                   className="p-3 rounded-full border border-black hover:border-none hover:bg-[#D1A054] hover:text-white"
                 >
