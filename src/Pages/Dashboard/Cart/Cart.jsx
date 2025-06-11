@@ -10,7 +10,7 @@ const Cart = () => {
   const axiousSecure = useAxiosSecure();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
-  const handleDelteItem = (id) => {
+  const handleDeleteItem = (id) => {
     console.log("Deleting item with id:", id);
     Swal.fire({
       title: "Are you sure?",
@@ -92,7 +92,7 @@ const Cart = () => {
                   <td>{item.price}</td>
                   <th>
                     <button
-                      onClick={() => handleDelteItem(item._id)}
+                      onClick={() => handleDeleteItem(item._id)}
                       className="btn bg-[#B91C1C] text-white"
                     >
                       <MdOutlineDeleteForever className="w-5 h-5"></MdOutlineDeleteForever>

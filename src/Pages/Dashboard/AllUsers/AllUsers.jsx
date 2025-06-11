@@ -1,14 +1,71 @@
-import React from 'react';
-import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
-import useUser from '../../../hooks/useUser';
-import { MdOutlineDeleteForever } from 'react-icons/md';
-import { FaUsers } from 'react-icons/fa';
+import React from "react";
+import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
+import useUser from "../../../hooks/useUser";
+import { MdOutlineDeleteForever } from "react-icons/md";
+import { FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { axiousSecure } from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-    const [users] = useUser()
+  const [users, refetch] = useUser();
 
-    return (
-        <div>
+  const handleMakeAdmin = (user) => {
+    console.log("Making admin for user:", user);
+    axiousSecure
+      .patch(`/users/admin/${user._id}`)
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          refetch();
+          Swal.fire({
+            title: "Success!",
+            text: `${user.name} is now an admin.`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error making admin:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to make admin.",
+          icon: "error",
+          showConfirmButton: true,
+        });
+      });
+  };
+
+  const handleDeleteUsers = (user) => {
+    console.log("Deleting item with id:", user);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiousSecure.delete(`/users/${user._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your item has been deleted.",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          }
+        });
+      }
+    });
+  };
+
+  return (
+    <div>
       <SectionTitle
         subHeading={"How Many??"}
         heading={"Mange All Users"}
@@ -42,13 +99,20 @@ const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                    <button className='btn bg-[#D1A054] text-white'>
+                    {user.role === "admin" ? (
+                      "Admin"
+                    ) : (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="btn bg-[#D1A054] text-white"
+                      >
                         <FaUsers className="w-5 h-5"></FaUsers>
-                    </button>
+                      </button>
+                    )}
                   </td>
                   <th>
                     <button
-                    //   onClick={() => handleDelteItem(user._id)}
+                      onClick={() => handleDeleteUsers(user._id)}
                       className="btn bg-[#B91C1C] text-white"
                     >
                       <MdOutlineDeleteForever className="w-5 h-5"></MdOutlineDeleteForever>
@@ -61,7 +125,7 @@ const AllUsers = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default AllUsers;
