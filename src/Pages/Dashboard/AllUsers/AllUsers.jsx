@@ -4,10 +4,11 @@ import useUser from "../../../hooks/useUser";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { axiousSecure } from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
   const [users, refetch] = useUser();
+  const axiousSecure = useAxiosSecure();
 
   const handleMakeAdmin = (user) => {
     console.log("Making admin for user:", user);

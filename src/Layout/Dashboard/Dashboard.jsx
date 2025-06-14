@@ -15,9 +15,10 @@ import { IoList } from "react-icons/io5";
 import { MdRateReview } from "react-icons/md";
 import { TbBookmarksFilled } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin()
 
 
   return (
