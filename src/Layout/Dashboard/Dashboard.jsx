@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col md:flex-row items-start justify-between">
       {/* dashboard sidebar */}
-      <div className="w-64 min-h-screen bg-[#D1A054] dark:bg-gray-800 p-6 shadow-md">
+      <div className="w-full md:w-64 min-h-screen bg-[#D1A054] dark:bg-gray-800 p-6 shadow-md">
         <div className="flex flex-col">
           <a className="text-base font-bold uppercase md:text-xl">
             Bistro boss
@@ -184,7 +184,7 @@ const Dashboard = () => {
         </div>
       </div>
       {/* dashboard main content */}
-      <div className="flex-1 border-4 bg-[#E8E8E8]">
+      <div className="w-full flex-1">
         <Outlet></Outlet>
       </div>
     </div>
