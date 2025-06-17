@@ -60,7 +60,7 @@ const FoodCard = ({ item }) => {
       <img
         src={image}
         alt=""
-        className="object-cover object-center w-full h-72 dark:bg-gray-500"
+        className="w-full h-72 dark:bg-gray-500"
       />
       <div className="flex flex-col justify-between flex-grow p-2 md:p-6 space-y-6">
         <div className="space-y-2">
