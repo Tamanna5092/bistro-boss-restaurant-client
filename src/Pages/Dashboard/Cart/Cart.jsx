@@ -4,6 +4,7 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -45,16 +46,23 @@ const Cart = () => {
         heading={"Wanna add more?"}
       ></SectionTitle>
       <div className="w-3/4 mx-auto my-10 p-10 bg-[#F3F3F3] rounded-lg">
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <h1 className="text-3xl font-medium uppercase">
             Total Orders: {cart.length}
           </h1>
           <h1 className="text-3xl font-medium uppercase">
             Total Price: ${totalPrice}
           </h1>
-          <button className="text-white px-4 bg-[#D1A054] uppercase">
+          {
+            cart.length? <Link to={'/dashboard/payment'}>
+          <button className="text-white px-4 py-2 bg-[#D1A054] uppercase">
             Pay
           </button>
+          </Link> :
+          <button disabled className="text-white px-4 py-2 bg-[#D1A054] uppercase">
+            Pay
+          </button>
+          }
         </div>
         {/* table */}
         <div className="w-full overflow-x-auto">
