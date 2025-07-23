@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth()
+  const { isAdmin } = useAdmin()
   const [cart] = useCart()
   const navOptions = (
     <>
@@ -13,7 +15,12 @@ const Navbar = () => {
         <Link to={"/"}>Home</Link>
       </li>
       <li className="uppercase font-medium">
-        <Link to={""}>Dashboard</Link>
+        {
+          user && isAdmin && <Link to={"/dashboard/adminHome"}>Dashboard</Link>
+        }
+        {
+          user && !isAdmin && <Link to={"/dashboard/userHome"}>Dashboard</Link>
+        }
       </li>
       <li className="uppercase font-medium">
         <Link to={"/ourMenu"}>Our menu</Link>
